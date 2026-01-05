@@ -34,6 +34,12 @@ public class User {
 
     private Instant updatedAt;
 
+    public User() {
+        this.createdAt = Instant.now();
+        this.updatedAt = Instant.now();
+        this.status = UserStatus.OFFLINE;
+    }
+
     public String getId() {
         return id;
     }
