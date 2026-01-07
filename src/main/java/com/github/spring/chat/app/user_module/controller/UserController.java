@@ -5,6 +5,7 @@ import com.github.spring.chat.app.user_module.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +23,12 @@ public class UserController {
     @GetMapping("/me")
     public ResponseEntity<UserResponseDTO> getUserProfile(HttpServletRequest request) {
         UserResponseDTO response = new UserResponseDTO(service.getUserProfileFromToken(request));
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserResponseDTO> getUserProfile(@PathVariable String id) {
+        UserResponseDTO response = new UserResponseDTO(service.getUserById(id));
         return ResponseEntity.ok(response);
     }
 

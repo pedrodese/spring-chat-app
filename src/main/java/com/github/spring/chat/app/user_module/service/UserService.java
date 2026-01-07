@@ -26,4 +26,8 @@ public class UserService {
         return repository.findById(jwtUtil.getUserIdFromToken(token))
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
     }
+
+    public User getUserById(String id) {
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found"));
+    }
 }
